@@ -10,13 +10,51 @@
     <nav class="navbar-wrapper">
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
-      <RouterLink to="/">Blog</RouterLink>
+      <RouterLink to="/blog">Blog</RouterLink>
       <RouterLink to="/">Sign in</RouterLink>
       <RouterLink to="/" class="navbar-signup">Sign up</RouterLink>
     </nav>
   </header>
-  
   <RouterView />
+  <footer>
+    <div class="footer-section-wrapper">
+      <div>
+        <div class="footer-logo">
+          <img alt="Vue logo" src="@/assets/logo.svg" width="125" height="125" />
+        </div>
+        <p>have discipline in your life</p>
+      </div>
+      <div>
+        <h5>Title 1</h5>
+        <p>page 1</p>
+        <p>page 2</p>
+        <p>page 3</p>
+        <p>page 4</p>
+      </div>
+      <div>
+        <h5>Title 2</h5>
+        <p>page 1</p>
+        <p>page 2</p>
+        <p>page 3</p>
+        <p>page 4</p>
+      </div>
+      <div>
+        <h5>Title 3</h5>
+        <p>page 1</p>
+        <p>page 2</p>
+        <p>page 3</p>
+        <p>page 4</p>
+      </div>
+      <div>
+        <h5>Title 4</h5>
+        <p>page 1</p>
+        <p>page 2</p>
+        <p>page 3</p>
+        <p>page 4</p>
+      </div>
+    </div>
+  </footer>
+  
 </template>
 
 <style lang="scss">
@@ -74,6 +112,53 @@ header{
 
 .navbar-signup:hover{
   box-shadow: 0px 0px #e8e8e8;
+}
+
+
+
+
+
+
+footer{
+  width: 100%;
+  background-color: #004655;
+}
+
+.footer-section-wrapper{
+  height: 100%;
+      padding: 60px 90px 30px 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  h5{
+    font-size: 20px;
+    font-weight: 700;
+
+  }
+
+  div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  & div:first-child{
+    align-items: flex-start;
+  }
+
+  h5{
+        margin: 20px 0px;
+  }
+}
+
+.footer-logo{
+  width: 10%;
+  text-align: center;
+  img{
+    width: 40px;
+    height: 60px;
+  }
 }
 
 </style>
