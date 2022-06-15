@@ -1,6 +1,7 @@
 <script>
   import searchIcon from '../components/icons/search-icon.vue'
   import closeIcon from '../components/icons/close-icon.vue'
+
   export default {
   components: {
     searchIcon,
@@ -26,7 +27,10 @@
         <h3>You Have <span>10 Task</span> To Do For Today</h3>
         <p>Thusday, JUNE 9</p>
       </div>
-      <p class="greeting">Good Afternoon <span>Arsam</span> </p>
+      <div class="introduction-part">
+        <p class="greeting">Good Afternoon <span>Arsam</span> </p>
+        <button class="add-task-button" @click="addTask">Add Task</button>
+      </div>
       <input class="task-search-bar" type="text" placeholder="Search for Task...">
       <searchIcon />
     
@@ -48,6 +52,10 @@
 </template>
 
 <style scoped lang="scss">
+*{
+  margin: 0;
+}
+
 hero{
   width: 100%;
   display: flex;
@@ -128,8 +136,8 @@ hero{
   }
 
   .greeting{
-    margin-top: 10px;
-    margin-bottom: 35px;
+    margin-top: 35px;
+    margin-bottom: 45px;
     font-weight: 200;
     color: #818181;
     span{
@@ -137,8 +145,20 @@ hero{
     }
   }
 
+  .add-task-button{
+    background-color: #FFC85D;
+    padding: 8px 15px;
+    font-weight: 800;
+    border: none;
+    border-radius: 5px;
+    color: #004655;
+    box-shadow: 2px 2px #d5d5d5;
+  }
   .task-search-bar{
     width: 100%;
+    color: #004655;
+    font-weight: 400;
+    font-size: 18px;
     border: none;
     outline: none;
     border-radius: 40px;
