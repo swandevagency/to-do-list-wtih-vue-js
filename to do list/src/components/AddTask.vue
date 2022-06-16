@@ -1,11 +1,10 @@
 <script>
     export default {
-    data() {
-        return {
-            title: '',
-            description: ''
-        }
-    }
+      name: 'AddTask',
+      props: {
+        title: String,
+        description: String
+      }
     }
 </script>
 
@@ -20,7 +19,7 @@
 
               <label>Description:</label>
               <textarea v-model="description" class="descriptionInput"></textarea>
-              <button class="add-task-button">Add</button>
+              <button @click="onclick()" class="add-task-button">Add</button>
         </div>
     </section>
 </template>

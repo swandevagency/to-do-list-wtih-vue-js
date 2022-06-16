@@ -1,13 +1,33 @@
 <script>
   import searchIcon from '../components/icons/search-icon.vue'
   import closeIcon from '../components/icons/close-icon.vue'
-
+  import AddTask from '../components/AddTask.vue'
+  
   export default {
-  components: {
-    searchIcon,
-    closeIcon
+    data() {
+        return {
+          add: true,
+
+        }
+    },
+    components: {
+      AddTask,
+      searchIcon,
+      closeIcon
+    },
+    methods: {
+      onclick(){
+        console.log('clicked')
+        
+      },
+      closeClick(){
+        console.log('close');
+        let closableDiv = document.querySelector('.task-container')
+        closableDiv.remove()
+      }
+    }
+    
   }
-}
 </script>
 
 <template>
@@ -23,13 +43,18 @@
   </hero>
   <Section class="list-section">
     <div class="list-section-wrapper">
+
       <div class="introduction-part">
         <h3>You Have <span>10 Task</span> To Do For Today</h3>
-        <p>Thusday, JUNE 9</p>
+        <p>Thusday, JUNE 15</p>
       </div>
       <div class="introduction-part">
         <p class="greeting">Good Afternoon <span>Arsam</span> </p>
-        <button class="add-task-button" @click="addTask">Add Task</button>
+        <button class="add-task-button" @click="add = !add">
+          <p v-if="add">Add Task</p>
+          <p v-else>Close</p>
+        </button>
+        
       </div>
       <input class="task-search-bar" type="text" placeholder="Search for Task...">
       <searchIcon />
@@ -38,16 +63,46 @@
         <div>
           <div class="task-first-part">
             <h4>TITLE</h4>
-            <button><closeIcon /></button>
+            <button @click="closeClick()"><closeIcon /></button>
           </div>
-          <p class="task-description">Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit</p>
+          <p class="task-description">Lorem  consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit</p>
           <div class="task-last-part">
             <p>TASK 1</p>
-            <p>12:00 PM</p>
+            <p>09:00 PM</p>
           </div>
         </div>
       </div>
-    </div> 
+
+      <div class="task-container">
+        <div>
+          <div class="task-first-part">
+            <h4>TITLE</h4>
+            <button @click="closeClick()"><closeIcon /></button>
+          </div>
+          <p class="task-description">Lorem ipsum dolor sit amet, elorem tur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit</p>
+          <div class="task-last-part">
+            <p>TASK 1</p>
+            <p>12:30 PM</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-container">
+        <div>
+          <div class="task-first-part">
+            <h4>TITLE</h4>
+            <button @click="closeClick()"><closeIcon /></button>
+          </div>
+          <p class="task-description">Lorem ipsum dolor amet, elit elit consectetur amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit</p>
+          <div class="task-last-part">
+            <p>TASK 1</p>
+            <p>14:50 PM</p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
   </Section>  
 </template>
 
@@ -148,11 +203,14 @@ hero{
   .add-task-button{
     background-color: #FFC85D;
     padding: 8px 15px;
-    font-weight: 800;
     border: none;
     border-radius: 5px;
-    color: #004655;
     box-shadow: 2px 2px #d5d5d5;
+
+    p{
+      font-weight: 700;
+      color: #004655;      
+    }
   }
   .task-search-bar{
     width: 100%;
@@ -188,6 +246,7 @@ hero{
   flex-direction: column;
   padding: 20px 35px;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  margin-bottom: 20px;
 
 
   .task-first-part{
