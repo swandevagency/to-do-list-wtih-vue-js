@@ -2,11 +2,47 @@
   import searchIcon from '../components/icons/search-icon.vue'
   import closeIcon from '../components/icons/close-icon.vue'
   import up from '../components/icons/up.vue'
+  import { looseIndexOf } from '@vue/shared'
   
   export default {
     data() {
         return {
           add: true,
+          VTitle:"",
+          VDescription:"",
+          VTime:"",
+          tasks: [
+              /* {
+                VTitle: "", 
+                VDescription: "",
+                VTime: "",
+                index: "",
+              }, */
+              {
+                title: 'Task 1', 
+                description: 'Description Task 1', 
+                time: '09:30 PM',
+                index: 1,
+              },
+              {
+                title: 'Task 2', 
+                description: 'Description Task 2', 
+                time: '10:30 PM',
+                index: 2,
+              },
+              {
+                title: 'Task 3', 
+                description: 'Description Task 3', 
+                time: '15:00 PM',
+                index: 3,
+              },
+              {
+                title: 'Task 4', 
+                description: 'Description Task 4', 
+                time: '20:15 PM',
+                index: 4,
+              },
+          ]
         }
     },
     components: {
@@ -15,14 +51,17 @@
       up
     },
     methods: {
-      onclick(){
+      addTask(){
         console.log('clicked')
-        
+        const newTask = new  {
+          this.VTitle = 
+        }
       },
-      closeClick(){
-        console.log('close');
-        let closableDiv = document.querySelector('.task-container')
-        closableDiv.remove()
+      deleteTask(index){
+        console.log('delete');
+
+        this.tasks = this.tasks.filter((task) => task.index !== index);
+
       },
       onScroll(){
         document.querySelector('#getStarted').scrollIntoView({
@@ -33,7 +72,15 @@
         document.querySelector('header').scrollIntoView({
           behavior: 'smooth',
         });
-      }
+      },
+      currentDateTime() {
+        const current = new Date();
+        const date = current.toLocaleString();
+        const dateTime = date;
+
+        return dateTime;
+      } 
+
     }
     
   }
@@ -54,8 +101,8 @@
     <div class="list-section-wrapper">
 
       <div class="introduction-part">
-        <h3>You Have <span>10 Task</span> To Do For Today</h3>
-        <p>Thusday, JUNE 15</p>
+        <h3>You Have <span>{{tasks.length}} Task</span> To Do For Today</h3>
+        <p>{{currentDateTime()}}</p>
       </div>
       <div class="introduction-part">
         <p class="greeting">Good Afternoon <span>Arsam</span> </p>
@@ -73,57 +120,32 @@
         <div class="section" v-if="!add">
           <div class="add-task-container">
                 <label>Title:</label>
-                <input v-model="title" type="text" class="titleInput" />
+                <input v-model="VTitle" type="text" class="titleInput" />
 
                 <label>Description:</label>
-                <input v-model="description" class="descriptionInput">
-                <button @click="onclick()" class="add-task-button">Add</button>
+                <input v-model="VDescription" class="descriptionInput">
+                
+                
+                <label>Time:</label>
+                <input v-model="VTime" type="time" class="timeInput">
+
+                <button @click="addTask()" class="add-task-button-in-container">Add</button>
           </div>
         </div>
       </section>
 
 
-      <section>  
-        <div class="task-container">
-          <div>
+      <section class="task-container-wrapper">
+        <div class="task-container" :key="index" v-for="(task, index) in tasks" >
             <div class="task-first-part">
-              <h4>TITLE</h4>
-              <button @click="closeClick()"><closeIcon /></button>
+              <h4>{{task.title}}</h4>
+              <button @click="deleteTask(task.index)"><closeIcon /></button>
             </div>
-            <p class="task-description">Lorem consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit</p>
+            <p class="task-description">{{task.description}}</p>
             <div class="task-last-part">
-              <p>TASK 1</p>
-              <p>09:00 PM</p>
+              <p>Task {{index +  1}}</p>
+              <p>{{task.time}}</p>
             </div>
-          </div>
-        </div>
-
-        <div class="task-container">
-          <div>
-            <div class="task-first-part">
-              <h4>TITLE</h4>
-              <button @click="closeClick()"><closeIcon /></button>
-            </div>
-            <p class="task-description">Lorem ipsum dolor sit amet, elorem tur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit</p>
-            <div class="task-last-part">
-              <p>TASK 1</p>
-              <p>12:30 PM</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="task-container">
-          <div>
-            <div class="task-first-part">
-              <h4>TITLE</h4>
-              <button @click="closeClick()"><closeIcon /></button>
-            </div>
-            <p class="task-description">Lorem ipsum dolor amet, elit elit consectetur amet, elit elit consectetur adipiscing elit Lorem ipsum dolor sit amet, elit elit consectetur adipiscing elit</p>
-            <div class="task-last-part">
-              <p>TASK 1</p>
-              <p>14:50 PM</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -215,8 +237,8 @@ hero{
       }
     }
     p{
-      font-weight: 200;
-      color: #818181;
+      font-weight: 400;
+      color: #585757;
     }
   }
 
@@ -294,7 +316,6 @@ hero{
   border-radius: 10px;
   background-color: hsl(197deg 100% 94%);
   width: 100%;
-  height: 45vh;
   display: flex;
   flex-direction: column;
   box-shadow: inset 1px 1px 6px #00000065;
@@ -318,19 +339,31 @@ hero{
   border-radius: 5px;
   border: none;
   box-shadow: 2px 2px #00000030;
-  height:100px;
   margin-bottom:20px;
   color: #004655;
   font-size: 18px;
   font-weight: 600;
 }
 
-.add-task-button{
+.timeInput{
+  background-color: #00D1FF;
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 2px 2px #00000030;
+  margin-bottom:25px;
+  color: #004655;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.add-task-button-in-container{
   background-color: #FFC85D;
   padding: 8px 15px;
   font-weight: 600;
   border-radius: 5px;
   border: none;
+  margin: 20px 0px;
   color: #004655;
   box-shadow: 2px 2px #00000030;
 }
