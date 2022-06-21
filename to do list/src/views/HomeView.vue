@@ -3,48 +3,60 @@
   import closeIcon from '../components/icons/close-icon.vue'
   import up from '../components/icons/up.vue'
   import { looseIndexOf } from '@vue/shared'
-  
+  import { ref, onMounted } from 'vue'
+
+  const el = ref()
+  onMounted(() => {
+    el.value // <div>
+  })
+
   export default {
     data() {
-        return {
-          add: true,
-          VTitle:"",
-          VDescription:"",
-          VTime:"",
-          tasks: [
-              /* {
-                VTitle: "", 
-                VDescription: "",
-                VTime: "",
-                index: "",
-              }, */
-              {
-                title: 'Task 1', 
-                description: 'Description Task 1', 
-                time: '09:30 PM',
-                index: 1,
-              },
-              {
-                title: 'Task 2', 
-                description: 'Description Task 2', 
-                time: '10:30 PM',
-                index: 2,
-              },
-              {
-                title: 'Task 3', 
-                description: 'Description Task 3', 
-                time: '15:00 PM',
-                index: 3,
-              },
-              {
-                title: 'Task 4', 
-                description: 'Description Task 4', 
-                time: '20:15 PM',
-                index: 4,
-              },
-          ]
-        }
+      return {
+        add: true,
+        VTitle:"",
+        VDescription:"",
+        VTime:"",
+        index: "",
+        tasks: [
+          /* {
+            VTitle: "", 
+            VDescription: "",
+            VTime: "",
+            index: "",
+          }, */
+          {
+            title: 'Task 1', 
+            description: 'Description Task 1', 
+            time: '09:30 PM',
+            index: 1,
+          },
+          {
+            title: 'Task 2', 
+            description: 'Description Task 2', 
+            time: '10:30 PM',
+            index: 2,
+          },
+          {
+            title: 'Task 3', 
+            description: 'Description Task 3', 
+            time: '15:00 PM',
+            index: 3,
+          },
+          {
+            title: 'Task 4', 
+            description: 'Description Task 4', 
+            time: '20:15 PM',
+            index: 4,
+          },
+        ]
+      }
     },
+    /* mounted() {
+      if (localStorage.name) {
+        this.name = localStorage.name;
+      }
+    }, */
     components: {
       searchIcon,
       closeIcon,
@@ -53,10 +65,23 @@
     methods: {
       addTask(){
         console.log('clicked')
-        const newTask = new  {
-          this.VTitle = 
+        const addNewTask = {
+          title: "",
+          description: "",
+          time: "",
+          index: ""
         }
+        addNewTask.title = this.VTitle
+        addNewTask.description = this.VDescription
+        addNewTask.time = this.VTime
+        addNewTask.index = this.tasks.length + 1  
+        this.tasks.push(addNewTask)   
       },
+      /* watch: {
+        name(newName) {
+          console.log(localStorage)
+        }
+      }, */
       deleteTask(index){
         console.log('delete');
 

@@ -1,4 +1,5 @@
 <script setup>
+  
 </script>
 
 <template>
@@ -10,9 +11,9 @@
     <nav class="navbar-wrapper">
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
-      <RouterLink to="/blog">Blog</RouterLink>
-      <RouterLink to="/">Sign in</RouterLink>
-      <RouterLink to="/" class="navbar-signup">Sign up</RouterLink>
+      <a>Blog</a>
+      <a>Sign in</a>
+      <a class="navbar-signup">Sign up</a>
     </nav>
   </header>
   <RouterView />
