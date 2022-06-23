@@ -18,74 +18,47 @@
         VDescription:"",
         VTime:"",
         index: "",
-        tasks: [
-          /* {
-            VTitle: "", 
-            VDescription: "",
-            VTime: "",
-            index: "",
-          }, */
-          {
-            title: 'Task 1', 
-            description: 'Description Task 1', 
-            time: '09:30 PM',
-            index: 1,
-          },
-          {
-            title: 'Task 2', 
-            description: 'Description Task 2', 
-            time: '10:30 PM',
-            index: 2,
-          },
-          {
-            title: 'Task 3', 
-            description: 'Description Task 3', 
-            time: '15:00 PM',
-            index: 3,
-          },
-          {
-            title: 'Task 4', 
-            description: 'Description Task 4', 
-            time: '20:15 PM',
-            index: 4,
-          },
-        ]
+        tasks: [],
+        newTasks: null
       }
     },
-    /* mounted() {
-      if (localStorage.name) {
-        this.name = localStorage.name;
-      }
-    }, */
     components: {
       searchIcon,
       closeIcon,
       up
     },
+    mounted() {
+      const savedTasks = localStorage.getItem('tasks')
+      if (savedTasks) {
+        this.tasks = JSON.parse(localStorage.getItem('tasks'));
+      }
+    },
     methods: {
       addTask(){
-        console.log('clicked')
-        const addNewTask = {
-          title: "",
-          description: "",
-          time: "",
-          index: ""
-        }
-        addNewTask.title = this.VTitle
-        addNewTask.description = this.VDescription
-        addNewTask.time = this.VTime
-        addNewTask.index = this.tasks.length + 1  
-        this.tasks.push(addNewTask)   
-      },
-      /* watch: {
-        name(newName) {
-          console.log(localStorage)
-        }
-      }, */
-      deleteTask(index){
-        console.log('delete');
 
-        this.tasks = this.tasks.filter((task) => task.index !== index);
+        const newTask = {
+          title: this.VTitle,
+          description: this.VDescription,
+          time: this.VTime,
+        }
+        this.tasks.push(newTask)
+        this.saveTasks()
+        this.VTitle = ""
+        this.VDescription = ""
+        this.VTime = ""
+      },
+      
+      saveTasks() {
+        const parsed = JSON.stringify(this.tasks);
+        localStorage.setItem('tasks', parsed);
+      },
+
+      deleteTask(index){
+        
+        this.tasks[index] = null;
+
+        this.tasks = this.tasks.filter((task) => task);
+        this.saveTasks()
 
       },
       onScroll(){
