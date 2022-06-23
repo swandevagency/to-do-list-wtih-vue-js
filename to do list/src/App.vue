@@ -1,119 +1,165 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
+  
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <div  class="header-logo">
+      <img alt="Vue logo" src="@/assets/logo.svg" width="125" height="125" />
     </div>
+    
+    <nav class="navbar-wrapper">
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+      <a>Blog</a>
+      <a>Sign in</a>
+      <a class="navbar-signup">Sign up</a>
+    </nav>
   </header>
-
   <RouterView />
+  <footer>
+    <div class="footer-section-wrapper">
+      <div>
+        <div class="footer-logo">
+          <img alt="Vue logo" src="@/assets/logo.svg" width="125" height="125" />
+        </div>
+        <p>have discipline in your life</p>
+      </div>
+      <div>
+        <h5>Title 1</h5>
+        <p>page 1</p>
+        <p>page 2</p>
+        <p>page 3</p>
+        <p>page 4</p>
+      </div>
+      <div>
+        <h5>Title 2</h5>
+        <p>page 1</p>
+        <p>page 2</p>
+        <p>page 3</p>
+        <p>page 4</p>
+      </div>
+      <div>
+        <h5>Title 3</h5>
+        <p>page 1</p>
+        <p>page 2</p>
+        <p>page 3</p>
+        <p>page 4</p>
+      </div>
+      <div>
+        <h5>Title 4</h5>
+        <p>page 1</p>
+        <p>page 2</p>
+        <p>page 3</p>
+        <p>page 4</p>
+      </div>
+    </div>
+  </footer>
+  
 </template>
 
-<style>
+<style lang="scss">
 @import '@/assets/base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+body{
+  background-color: rgb(255, 255, 255);
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-nav {
+header{
+  display: flex;
+  flex-flow: row nowrap;
   width: 100%;
-  font-size: 12px;
+  border-bottom: #C3E6F1 1px solid;
+  justify-content: space-between
+}
+
+.wrapper{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.header-logo{
+  width: 10%;
   text-align: center;
-  margin-top: 2rem;
+  img{
+    width: 40px;
+    height: 60px;
+  }
+}
+.navbar-wrapper{
+  width: 55%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  padding: 14px 0px;
+  line-height: 35px;
+
+  a{
+    text-decoration: none;
+    color: #004655;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  a:hover{
+    color: #30a0b8;
+  }
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.navbar-signup{
+  background-color: #FFF510;
+  padding: 0px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px #d5d5d5;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.navbar-signup:hover{
+  box-shadow: 0px 0px #e8e8e8;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+
+
+
+
+
+footer{
+  width: 100%;
+  background-color: #004655;
 }
 
-nav a:first-of-type {
-  border: 0;
-}
+.footer-section-wrapper{
+  height: 100%;
+      padding: 60px 90px 30px 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 
-@media (min-width: 1024px) {
-  body {
+  h5{
+    font-size: 20px;
+    font-weight: 700;
+
+  }
+
+  div{
     display: flex;
-    place-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  & div:first-child{
+    align-items: flex-start;
   }
 
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  h5{
+        margin: 20px 0px;
   }
 }
+
+.footer-logo{
+  width: 10%;
+  text-align: center;
+  img{
+    width: 40px;
+    height: 60px;
+  }
+}
+
 </style>
